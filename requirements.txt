@@ -1,1 +1,8 @@
 langchain
+PyPDF2
+tiktoken
+os
+pinecone
+pinecone-client
+streamlit
+streamlit_chat
