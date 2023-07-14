@@ -1,7 +1,6 @@
 langchain
 PyPDF2
 tiktoken
-pinecone
 pinecone-client
 streamlit
 streamlit_chat
