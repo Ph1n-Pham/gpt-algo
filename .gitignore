@@ -1,0 +1,7 @@
+.env
+env/
+old_version/
+
+_pycache_/
+node_modules/
+```
