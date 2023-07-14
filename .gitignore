@@ -1,7 +1,9 @@
 .env
 env/
 old_version/
-
+.DS_Store
+package-lock.json
+package.json
 __pycache__/
 node_modules/
 ```
