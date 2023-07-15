@@ -1,4 +1,6 @@
+python
 langchain
+openai
 PyPDF2
 tiktoken
 python-dotenv
