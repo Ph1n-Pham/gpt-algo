@@ -55,7 +55,7 @@ st.title('📚 Algorithm Education Bot')
 # )
 # texts = text_splitter.split_documents(data)
 
-model_name = 'text-embedding-ada-002'
+model_name = 'gpt-3.5-turbo'
 embeddings = OpenAIEmbeddings(model=model_name, openai_api_key=openai_api_key)
 
 # initialize pinecone
