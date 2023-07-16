@@ -139,11 +139,11 @@ llm = ChatOpenAI(model_name= model_name, temperature = 0.1, max_tokens = 400)#, 
 if prompt:
     topic = prompt
     input = topic
-    docs = docsearch.similarity_search(prompt)
+    #docs = docsearch.similarity_search(prompt)
     #chain = load_qa_chain(llm, chain_type = 'stuff') #prompt = intro_template, 
-    chain = MultiPromptChain.from_prompts(llm, prompt_infos, verbose=True)
+    chain = MultiPromptChain.from_prompts(llm, prompt_infos,  verbose=True)
     with get_openai_callback() as cb:
-        response = chain.run(input_documents = docs, input = prompt)
+        response = chain.run(input = prompt, retriever = docsearch.as_retriever(),)#, input_documents = docs, )
         print(cb)
 
     #st.write("**Introduction:** :sunglasses:")
