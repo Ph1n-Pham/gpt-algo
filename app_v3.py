@@ -39,8 +39,10 @@ pinecone_env = os.getenv("PINECONE_API_ENV")
 pinecone_namespace = os.getenv("PINECONE_NAMESPACE")
 
 #app framework
-st.set_page_config(page_title='Algorithm Education Bot', page_icon='🧑‍💻', layout='centered')
+st.set_page_config(page_title='Algorithm Education Bot', page_icon='🧑‍💻', layout='wide')
 st.title('📚 Algorithm Education Bot')
+st.subheader('🤖 Welcome to your Algorithm friend!')
+st.text('I have read the book "Introduction to Algorithms" by THOMAS H. CORMEN, CHARLES E. LEISERSON, RONALD L. RIVEST, and CLIFFORD STEIN. \nYou can ask me any question about algorithms in this book, and I will try my best to answer your question or give you a quiz about algorithms. \nI am still learning, so please be patient with me. 😄')
 
 # #store pdf
 # loader = UnstructuredPDFLoader("data/Introduction_to_algorithms-3rd Edition.pdf")
