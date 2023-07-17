@@ -1,5 +1,5 @@
 
-# 🤖📚 Data Structure and Algorithm Learning Bot
+# 🤖📚 Data Structure and Algorithm Education Bot
 
 This is a learning bot designed to help students understand and practice data structures and algorithms. The bot is built using Langchain, OpenAI, and Streamlit. It provides an interactive environment where students can learn, experiment, and receive guidance on various concepts related to data structures and algorithms.
 
