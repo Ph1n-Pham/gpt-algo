@@ -104,9 +104,9 @@ prompt = st.text_input('Ask a question about Algorithm:')
 
 intro_template = """Act as a professor and write a technical, detailed introduction about 
                     background, industry usage, run time complexity, conclusion in paragraphs: {input}"""
-runtime_template = """Act as a professor and write a technical, detailed introduction about 
-                    specific runtime complexity of this algorithm: {input}"""
-quiz_template = """Act as a professor and give a quiz about this algorithm: {input}"""
+runtime_template = """Act as a professor and write a technical, detailed, on-point explanation about 
+                    runtime complexity of this algorithm: {input}"""
+quiz_template = """Act as a professor and give 5 quizzes about this algorithm: {input}"""
 
 prompt_infos = [
     {
