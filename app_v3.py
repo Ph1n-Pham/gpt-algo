@@ -133,7 +133,7 @@ prompt_infos = [
 ]
 
 #Llms
-llm = ChatOpenAI(model_name= model_name, temperature = 0.1, min_tokens = 100, max_tokens = 400)#, top_p = 0.2, frequency_penalty = 0.8, presence_penalty = 0.1)
+llm = ChatOpenAI(model_name= model_name, temperature = 0.1, max_tokens = 400)#, top_p = 0.2, frequency_penalty = 0.8, presence_penalty = 0.1)
 #intro_chain = LLMChain(llm = llm, prompt = intro_template, output_key = 'introduction')
 #code_example_chain = LLMChain(llm = llm, prompt = code_example_template, output_key = 'code_example')
 #sequential_chain = SequentialChain(chains = [intro_chain, code_example_chain], input_variables = ['topic'], 
