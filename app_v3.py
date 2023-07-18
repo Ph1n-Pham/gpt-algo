@@ -42,7 +42,7 @@ pinecone_namespace = os.getenv("PINECONE_NAMESPACE")
 st.set_page_config(page_title='Algorithm Education Bot', page_icon='🧑‍💻', layout='centered')
 st.title('📚 Algorithm Education Bot')
 st.subheader('🤖 Welcome to your Algorithm friend!')
-st.text('I have read the book "Introduction to Algorithms" by THOMAS H. CORMEN, CHARLES E. LEISERSON, RONALD L. RIVEST, and CLIFFORD STEIN. \nYou can ask me any question about algorithms in this book, and I will try my best to answer your question or give you a quiz about algorithms. \nI am still learning, so please be patient with me. 😄')
+st.text('I have read the book "Introduction to Algorithms" by THOMAS H. CORMEN, CHARLES E. LEISERSON, RONALD L. RIVEST, and CLIFFORD STEIN.\nYou can ask me any question about algorithms in this book, and I will try my best to answer your question or give you a quiz about algorithms. \nI am still learning, so please be patient with me. 😄')
 
 # #store pdf
 # loader = UnstructuredPDFLoader("data/Introduction_to_algorithms-3rd Edition.pdf")
@@ -102,11 +102,14 @@ prompt = st.text_input('Ask a question about Algorithm:')
 #     template = 'Act as a professor and give a quiz about this algorithm: {topic}',
 # )
 
-intro_template = """Act as a professor and write a technical, detailed introduction about 
-                    background, industry usage, run time complexity, conclusion in paragraphs: {input}"""
-runtime_template = """Act as a professor and write a technical, detailed, on-point explanation about 
-                    runtime complexity of this algorithm: {input}"""
-quiz_template = """Act as a professor and give 5 quizzes about this algorithm: {input}"""
+intro_template = """Act as a professor, write a technical, detailed introduction about 
+                    background, industry usage, run time complexity, conclusion in paragraphs: {input}
+                    Wrap up response when reach 300 tokens"""
+runtime_template = """Act as a professor, write a technical, short explanation about 
+                    worst case of runtime complexity of all operations of this algorithm: {input}
+                    Wrap up response when reach 300 tokens"""
+quiz_template = """Act as a professor, give 5 quizzes about this algorithm: {input}
+                    Wrap up response when reach 300 tokens"""
 
 prompt_infos = [
     {
@@ -130,7 +133,7 @@ prompt_infos = [
 ]
 
 #Llms
-llm = ChatOpenAI(model_name= model_name, temperature = 0.1, max_tokens = 400)#, top_p = 0.2, frequency_penalty = 0.8, presence_penalty = 0.1)
+llm = ChatOpenAI(model_name= model_name, temperature = 0.1, min_tokens = 100, max_tokens = 400)#, top_p = 0.2, frequency_penalty = 0.8, presence_penalty = 0.1)
 #intro_chain = LLMChain(llm = llm, prompt = intro_template, output_key = 'introduction')
 #code_example_chain = LLMChain(llm = llm, prompt = code_example_template, output_key = 'code_example')
 #sequential_chain = SequentialChain(chains = [intro_chain, code_example_chain], input_variables = ['topic'], 
@@ -143,11 +146,12 @@ if prompt:
     input = topic
     #docs = docsearch.similarity_search(prompt)
     #chain = load_qa_chain(llm, chain_type = 'stuff') #prompt = intro_template, 
-    chain = MultiPromptChain.from_prompts(llm, prompt_infos,  verbose=True)
+    chain = MultiPromptChain.from_prompts(llm, prompt_infos, verbose=True)
     with get_openai_callback() as cb:
         response = chain.run(input = prompt, retriever = docsearch.as_retriever(),)#, input_documents = docs, )
         print(cb)
 
     #st.write("**Introduction:** :sunglasses:")
     st.write(response)
+    #check why it can work on unrelated information
  
