@@ -28,7 +28,7 @@ from langchain.chains.router import MultiPromptChain
 from langchain.chains import RetrievalQA
 from langchain.callbacks import get_openai_callback
 from langchain.vectorstores import Chroma, Pinecone
-import pinecone
+from pinecone import Pinecone, ServerlessSpec
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -61,10 +61,27 @@ model_name = 'gpt-3.5-turbo'
 embeddings = OpenAIEmbeddings(model=model_name, openai_api_key=openai_api_key)
 
 # initialize pinecone
-pinecone.init(
-    api_key=pinecone_api_key,  # find at app.pinecone.io
-    environment=pinecone_env # next to api key in console
+# Pinecone outdated
+# pinecone.init(
+#     api_key=pinecone_api_key,  # find at app.pinecone.io
+#     environment=pinecone_env # next to api key in console
+# )
+
+pc = Pinecone(
+    api_key=os.environ.get("PINECONE_API_KEY")
 )
+
+# Now do stuff
+if 'my_index' not in pc.list_indexes().names():
+    pc.create_index(
+        name='my_index',
+        dimension=1536,
+        metric='euclidean',
+        spec=ServerlessSpec(
+            cloud='aws',
+            region='us-west-2'
+        )
+    )
 index_name = pinecone_index 
 namespace = pinecone_namespace
 if index_name not in pinecone.list_indexes():

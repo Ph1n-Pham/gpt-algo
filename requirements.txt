@@ -1,4 +1,5 @@
-
+langchain-community 
+langchain-core
 langchain
 openai
 PyPDF2
@@ -7,3 +8,6 @@ python-dotenv
 pinecone-client
 streamlit
 streamlit_chat
+ipykernel
+sentence_transformers
+qdrant_client
